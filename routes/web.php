@@ -25,3 +25,9 @@ Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorB
 Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate');
 
 Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generate');
+
+Route::resource('lugares', 'LugaresController');
+
+Route::resource('lugares', 'LugaresController');
+
+Route::resource('lugares', 'LugaresController');
