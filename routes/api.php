@@ -17,9 +17,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('login', 'UserController@login');
+Route::post('register', 'UserController@register');
 
-Route::resource('lugares', 'LugaresAPIController');
 
-Route::resource('lugares', 'LugaresAPIController');
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('details', 'UserController@details');
+    Route::resource('lugares', 'LugaresAPIController');
 
-Route::resource('lugares', 'LugaresAPIController');
+});
+
+//Route::get('lugares', 'API\LugaresAPIController@index')->middleware('auth:api');
+
+
