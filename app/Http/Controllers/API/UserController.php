@@ -31,9 +31,6 @@ class UserController extends Controller
 
     public function login(){
 
-        //    return response($results)->header('Content-type', 'application/json; charset=utf-8')->
-        //                        header('Access-Control-Allow-Origin', '*');
-
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
 
             $user = Auth::user();
@@ -71,7 +68,7 @@ class UserController extends Controller
 
             'name' => 'required',
 
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
 
             'password' => 'required',
 
@@ -82,7 +79,7 @@ class UserController extends Controller
 
         if ($validator->fails()) {
 
-            return response()->json(['error'=>$validator->errors()], 401);
+            return response()->json(['error'=>$validator->errors()], 401)->header('Access-Control-Allow-Origin', '*');
 
         }
 
@@ -98,7 +95,7 @@ class UserController extends Controller
         $success['name'] =  $user->name;
 
 
-        return response()->json(['success'=>$success], $this->successStatus);
+        return response()->json(['success'=>$success], $this->successStatus)->header('Access-Control-Allow-Origin', '*');
 
     }
 
@@ -107,7 +104,7 @@ class UserController extends Controller
 
      * details api
 
-     *
+     *s
 
      * @return \Illuminate\Http\Response
 
@@ -116,11 +113,8 @@ class UserController extends Controller
     public function details()
 
     {
-
         $user = Auth::user();
-
-        return response()->json(['success' => $user], $this->successStatus);
-
+        return response()->json(['success' => $user], $this->successStatus)->header('Access-Control-Allow-Origin', '*');
     }
 
 }

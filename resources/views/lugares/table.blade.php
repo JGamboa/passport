@@ -14,7 +14,8 @@
             <td>{!! $lugares->titulo !!}</td>
             <td>{!! $lugares->latitud !!}</td>
             <td>{!! $lugares->longitud !!}</td>
-            <td>{!! $lugares->photo !!}</td>
+            <td><img src='{!! $lugares->photo !!}' width='300'/></td>
+		
             <td>
                 {!! Form::open(['route' => ['lugares.destroy', $lugares->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
